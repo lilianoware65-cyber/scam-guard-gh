@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scam-Guard-GH 🇬🇭</title>
+<style>
+body{font-family:Arial;padding:20px;background:#000;color:#fff;max-width:500px;margin:auto}
+h1{color:#f00;text-align:center}
+textarea{width:100%;height:120px;padding:15px;font-size:18px;border-radius:10px}
+button{width:100%;padding:15px;background:#ffcc00;color:#000;font-size:20px;font-weight:bold;border:none;border-radius:10px;margin-top:10px}
+#result{margin-top:20px;padding:20px;border-radius:10px;font-size:18px;text-align:center;font-weight:bold}
+.scam{background:#ff0000;color:#fff}
+.safe{background:#00aa00;color:#fff}
+</style>
+</head>
+<body>
+<h1>Scam-Guard-GH 🇬🇭</h1>
+<p>Protect Ghanaians from MoMo scams!</p>
+<p>Paste suspicious message:</p>
+<textarea id="msg" placeholder="e.g. Congratulations you have won lotto, send momo to..."></textarea>
+<button onclick="check()">CHECK IF SCAM</button>
+<div id="result"></div>
+<p style="text-align:center;margin-top:30px">Made by lilianoware65-cyber from Kumasi</p>
+<script>
+function check(){
+ let m = document.getElementById('msg').value.toLowerCase();
+ let keywords = ["you have won","lotto","send momo","send money","account blocked","verify pin","share pin","claim prize","urgent","momo pin","click link","congratulations"];
+ let score=0; let found=[];
+ keywords.forEach(w=>{if(m.includes(w)){score++;found.push(w)}});
+ if(m.includes("momo") && (m.includes("pin")||m.includes("send"))) score+=2;
+ let r = document.getElementById('result');
+ if(score>=2){
+   r.className="scam"; r.innerHTML="🚨 SCAM ALERT! Score "+score+"/10<br>Found: "+found.join(", ")+"<br><br>DO NOT SEND MONEY OR PIN!";
+ } else {
+   r.className="safe"; r.innerHTML="✅ Looks SAFE Score "+score+"/10<br>But still be careful!";
+ }
+}
+</script>
+</body>
+</html>
